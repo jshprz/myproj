@@ -21,6 +21,6 @@ class RedirectIfAuthenticated
             return redirect(route('auth.shops',['storeName' => $request->storeName]));
         }
 
-        return $next($request);
+        return redirect(route('guest.user-login',['storeName' => $request->storeName]));
     }
 }
