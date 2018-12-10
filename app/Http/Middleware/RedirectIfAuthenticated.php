@@ -18,7 +18,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (!Auth::guard($guard)->check()) {
-            return redirect(route('auth.user-login',['storeName' => $request->storeName]));
+            return redirect(route('guest.user-login',['storeName' => $request->storeName]));
         }
 
         return $next($request);

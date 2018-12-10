@@ -37,7 +37,7 @@
                             </form>
                             <div class="text-center" style="margin-top:1rem">
                                     <span>Don't have account yet?
-                                    <a href="{{route('auth.user-register',['storeName' => $storeName])}}" class="text-center">
+                                    <a href="{{route('guest.user-register',['storeName' => $storeName])}}" class="text-center">
                                          <b>Click here to sign up</b></span>
                                     </a>
                                 </div>
