@@ -1,4 +1,4 @@
-@extends('buyer-side.master.index')
+@extends('master.index')
 @section('content')
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
 

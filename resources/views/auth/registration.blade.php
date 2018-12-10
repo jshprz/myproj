@@ -1,4 +1,4 @@
-@extends('buyer-side.master.index')
+@extends('master.index')
 @section('meta')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection

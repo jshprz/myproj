@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    @include('buyer-side.includes.head-plugins')
-    @include('buyer-side.includes.notices')
+    @include('includes.head-plugins')
+    @include('includes.notices')
 </head>
 <body>
     <div class="container">
     </div>
         @yield('content')
 
-@include('buyer-side.includes.body-plugins')
+@include('includes.body-plugins')
 
 @stack('script')
 <script>

@@ -1,4 +1,4 @@
-@extends('buyer-side.master.index')
+@extends('master.index')
 
 @section('content')
 
@@ -6,7 +6,7 @@
 
   <section class="section-content bg padding-y">
     <div class="container">
-      @include('buyer-side.includes.navbar')
+      @include('includes.navbar')
 
       <section class="hero">
         <div class="container">
@@ -27,8 +27,8 @@
         </div>
       </section>
       <div class="row">
-        @include('buyer-side.shop.sidebar')
-        @include('buyer-side.shop.content')
+        @include('shop.sidebar')
+        @include('shop.content')
       </div>
     </div>
     <div class="py-6 bg-gray-300 text-muted mt-5">

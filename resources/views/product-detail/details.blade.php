@@ -1,9 +1,9 @@
-@extends('buyer-side.master.index')
+@extends('master.index')
 
 
 @section('content')
 <div id="app">
-@include('buyer-side.includes.navbar')
+@include('includes.navbar')
     <div class="container">
         <div class="row justify-content-center mt-5">
             <div class="col-md-10 ">
