@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="container">
-    @include('buyer-side.includes.notices')
+    @include('includes.notices')
         <div class="row justify-content-center" style="margin-top: 7rem;">
         
             <div class="col-md-5">
