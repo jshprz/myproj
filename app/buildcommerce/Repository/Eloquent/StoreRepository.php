@@ -14,7 +14,6 @@ class StoreRepository extends AbstractRepository implements StoreRepositoryInter
     public function __construct(Store $store)
     {
         $this->model = $store;
-        $this->user = $users;
     }
 
     public function getStoreByName($storeName)
@@ -84,7 +83,7 @@ class StoreRepository extends AbstractRepository implements StoreRepositoryInter
 
     public function getAuthenticatedStore()
     {
-        $store_data = $this->getStoreById(Auth::guard('buyer')->user()->store_id);
+        $store_data = $this->getStoreById(Auth::user()->store_id);
         return response()->json($store_data);
     }
 
