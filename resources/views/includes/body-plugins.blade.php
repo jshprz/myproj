@@ -1,0 +1,12 @@
+<script src="{{asset('admin-side/js/jquery-3.3.1.js')}}"></script>
+<script src="{{asset('admin-side/js/popper.js')}}"></script>
+<script src="{{asset('admin-side/js/bootstrap.js')}}"></script>
+<script src="{{asset('admin-side/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('buyer-side/plugins/owl.carousel.min.js')}}"></script>
+<script src="{{asset('admin-side/vue/vue.min.js')}}"></script>
+<script src="{{asset('admin-side/vue/vue-spinner.min.js')}}"></script>
+<script src="{{asset('admin-side/vue/axios.min.js')}}"></script>
+<script src="{{asset('client-side/js/vee-validate.js')}}"></script>
+<script src="{{asset('buyer-side/js/numeral.min.js')}}"></script>
+<script src="{{asset('client-side/js/toastr.min.js')}}"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
