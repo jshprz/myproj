@@ -21,8 +21,8 @@ Route::group(['middleware' => 'guest', 'as' => 'guest.'], function(){
     Route::post('/register-buyer','Auth\RegistrationController@registerBuyer')->name('postBuyerRegister');
     Route::post('/login-buyer','Auth\LoginController@Login')->name('loginBuyer');
     Route::get('/{storeName}/product-details','ProductController@details')->name('details');
-    Route::get('/{storeName}/user-login','auth\LoginController@index')->name('user-login');
-    Route::get('/{storeName}/user-registration','auth\RegistrationController@index')->name('user-register');
+    Route::get('/{storeName}/user-login','Auth\LoginController@index')->name('user-login');
+    Route::get('/{storeName}/user-registration','Auth\RegistrationController@index')->name('user-register');
 });
 
 Route::group(['middleware' => 'auth','as' => 'auth.'], function(){
