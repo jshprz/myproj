@@ -44,6 +44,11 @@ class LoginController extends Controller
         $this->store = $store;
     }
 
+    public function dummy()
+    {
+        return view("auth.login",compact('storeName'));
+    }
+
     public function index($storeName)
     {
         $data = $this->store->getStoreByName($storeName);
