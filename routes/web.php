@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    echo Request::server('SERVER_ADDR');
 });
 Route::get('/loginss','Auth\LoginController@dummy')->name('login');  
 Route::get('/activate/{storeName}/{token}','Auth\RegistrationController@activate')->name('registerBuyerActivate');
