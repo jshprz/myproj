@@ -9,6 +9,7 @@ use App\buildcommerce\Models\StoreUsers;
 use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class LoginController extends Controller
 {

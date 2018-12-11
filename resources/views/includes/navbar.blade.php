@@ -9,7 +9,7 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
          <div style="padding-right: 20px;">
-                {{ auth()->guard('buyer')->user()->firstname }} {{ auth()->guard('buyer')->user()->lastname }}
+                {{ auth()->user()->firstname }} {{ auth()->user()->lastname }}
             </div>
       </li>
       <li>

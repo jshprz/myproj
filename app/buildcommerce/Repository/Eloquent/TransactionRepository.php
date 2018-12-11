@@ -20,7 +20,7 @@ class TransactionRepository extends AbstractRepository implements TransactionRep
 
      public function getTransactions()
      {
-         $query = DB::table('transactions')->join('products','transactions.product_id','=','products.id')->select('transactions.*', 'products.product_image', 'products.product_name', 'products.product_original_price')->where('transactions.buyer_id',Auth::guard('buyer')->user()->id)->get();
+         $query = DB::table('transactions')->join('products','transactions.product_id','=','products.id')->select('transactions.*', 'products.product_image', 'products.product_name', 'products.product_original_price')->where('transactions.buyer_id',Auth::user()->id)->get();
          return response()->json($query);
      }
 

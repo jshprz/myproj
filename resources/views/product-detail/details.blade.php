@@ -12,7 +12,7 @@
                         <div class="row">
                             <div class="col-lg-5">
                                 <!-- Product image -->
-                                <a href="buyer-side/images/items/1.jpg" class="text-center d-block mb-4">
+                                <a href="images/items/1.jpg" class="text-center d-block mb-4">
                                     <img src="https://res.cloudinary.com/hrwjn43y4/image/upload/{{ $exploded_images[0] }}" class="img-fluid"
                                         style="max-width: 280px;" alt="Product-img">
                                 </a>

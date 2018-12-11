@@ -33,7 +33,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         $this->model->role = 2;
         $this->model->token = $token;
         $this->model->save();
-        $view = 'buyer-side.mail.confirmation';
+        $view = 'mail.confirmation';
 
         $this->mailer->activation($view,$this->model,$token,$request->store_name);
         return true;
@@ -62,7 +62,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     public function verifyIfAuthenticated($storeName)
     {
         $check_buyer = $this->store->getStoreByName($storeName);
-        if($check_buyer->id == Auth::guard('buyer')->user()->store_id)
+        if($check_buyer->id == Auth::user()->store_id)
         {
             return true;
         }
@@ -74,7 +74,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
     public function createFeedback($request)
     {
-        $this->feedback->buyer_id = Auth::guard('buyer')->user()->id;
+        $this->feedback->buyer_id = Auth::user()->id;
         $this->feedback->product_id = $request->product_id;
         $this->feedback->message = $request->message;
         $this->feedback->title = $request->title;
@@ -83,7 +83,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     }
      public function createStar($request)
      {
-        $this->star->buyer_id = Auth::guard('buyer')->user()->id;
+        $this->star->buyer_id = Auth::user()->id;
         $this->star->product_id = $request->product_id;
         $this->star->stars = $request->star;
         $this->star->save();

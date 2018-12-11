@@ -18,11 +18,11 @@ if (App::environment('production')) {
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('products-tobe-displayed','buyer\ShopController@getProductsToBeDisplayed');
-Route::post('product-category-tobe-displayed','buyer\ShopController@getProductCategoryTobeDisplayed');
-Route::post('get-similar-product','buyer\ProductController@getSimilarProduct');
-Route::post('search-by-price-range','buyer\ProductController@searchByPriceRange');
-Route::post('save-payment','buyer\ShopController@savePayment');
-Route::post('get-payment','buyer\ShopController@getPayment');
-Route::get('get-last-transaction','buyer\TransactionController@lastTransaction');
-Route::post('search-by-slider','buyer\ProductController@searchBySlider');
+Route::post('products-tobe-displayed','ShopController@getProductsToBeDisplayed');
+Route::post('product-category-tobe-displayed','ShopController@getProductCategoryTobeDisplayed');
+Route::post('get-similar-product','ProductController@getSimilarProduct');
+Route::post('search-by-price-range','ProductController@searchByPriceRange');
+Route::post('save-payment','ShopController@savePayment');
+Route::post('get-payment','ShopController@getPayment');
+Route::get('get-last-transaction','TransactionController@lastTransaction');
+Route::post('search-by-slider','ProductController@searchBySlider');

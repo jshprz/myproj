@@ -150,7 +150,7 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
         			
         			$exploded_cart = explode('-', $value);
 
-        			$transaction_data[$key]['buyer_id'] = Auth::guard('buyer')->user()->id;
+        			$transaction_data[$key]['buyer_id'] = Auth::user()->id;
         			$transaction_data[$key]['total_paid'] = $json_transactions[0]->amount->total;
                     $transaction_data[$key]['product_id'] = $exploded_cart[0];
                     $transaction_data[$key]['order_id'] = Session::get('order_id');
@@ -171,10 +171,10 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
         		
         		Session::forget('order_id');
         		Cart::destroy();
-            return redirect()->route('client.shops',['storeName' => $storeName])->with('flashSuccess', 'Payment success');
+            return redirect()->route('auth.shops',['storeName' => $storeName])->with('flashSuccess', 'Payment success');
  
         }
-        return redirect()->route('buyer.viewcart',['storeName' => $storeName])->with('flashError', 'Payment failed');
+        return redirect()->route('auth.viewcart',['storeName' => $storeName])->with('flashError', 'Payment failed');
  
     }
 
@@ -205,7 +205,7 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
         		{
         			$exploded_cart = explode('-', $value);
 
-        			$transaction_data[$key]['buyer_id'] = Auth::guard('buyer')->user()->id;
+        			$transaction_data[$key]['buyer_id'] = Auth::user()->id;
         			$transaction_data[$key]['total_paid'] = Session::get('total_checkout');
                     $transaction_data[$key]['product_id'] = $exploded_cart[0];
                     $transaction_data[$key]['order_id'] = Session::get('order_id');
@@ -222,6 +222,6 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
         		Session::forget('order_id');
         		Cart::destroy();
 
-       return  view('buyer-side.track.index',compact('storeName'));
+       return  view('track.index',compact('storeName'));
     }
 }
