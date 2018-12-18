@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/a','ShopController@landing')->name('login');
+Route::get('/','ShopController@landing')->name('login');
 Route::get('/activate/{token}','Auth\RegistrationController@activate')->name('registerBuyerActivate');
 Route::group(['middleware' => 'guest', 'as' => 'guest.'], function(){
     
