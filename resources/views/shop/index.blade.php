@@ -34,7 +34,9 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-4 mb-5 mb-lg-0">
+          @auth
           <a class="blog-header-logo text-dark" href="{{ route('auth.mytransaction') }}">My transactions</a>
+          @endauth
             <!-- <div class="font-weight-bold text-uppercase text-lg text-dark mb-3">Sell<span class="text-primary">.</span></div>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p> -->
             <ul class="list-inline">
