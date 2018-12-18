@@ -15,16 +15,22 @@
 Route::get('/loginss','Auth\LoginController@dummy')->name('login');  
 Route::get('/activate/{token}','Auth\RegistrationController@activate')->name('registerBuyerActivate');
 Route::group(['middleware' => 'guest', 'as' => 'guest.'], function(){
-    Route::get('/hello','Auth\LoginController@index')->name('loginlogin');
     Route::post('/register-buyer','Auth\RegistrationController@registerBuyer')->name('postBuyerRegister');
     Route::post('/login-buyer','Auth\LoginController@Login')->name('loginBuyer');
     Route::get('/product-details','ProductController@details')->name('details');
-    // Route::get('/user-login','Auth\LoginController@index')->name('user-login');
+    Route::get('/user-login','Auth\LoginController@index')->name('user-login');
     Route::get('/user-registration','Auth\RegisterController@index')->name('user-register');
 });
 
 Route::group(['middleware' => 'auth','as' => 'auth.'], function(){
-    Route::get('/buyer-logout','Auth\LoginController@Logout')->name('buyerLogout');
+    Route::get('/buyer-logout',function(){
+
+        Auth::logout();
+        Session::flush();
+        return redirect()->route('guest.user-login');
+
+})->name('buyerLogout');
+    
     Route::get('/','ShopController@index')->name('shops');
     Route::get('/cart','ShopController@viewCart')->name('viewcart');
     Route::post('/checkout','PaymentController@index')->name('checkout');
