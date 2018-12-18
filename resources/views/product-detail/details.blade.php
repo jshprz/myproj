@@ -66,6 +66,7 @@
                                         <div class="d-flex">
                                             <input type="number" class="form-control" v-model="quantity" placeholder="Qty"
                                                 style="width: 90px;">
+                                            @auth
                                             <form action="{{ route('auth.addcart') }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="item_quantity" :value="quantity">
@@ -78,6 +79,15 @@
                                                 <button type="submit" href="#" class="btn  btn-primary ml-2"><i class="fas fa-shopping-cart"></i>
                                                     Add to cart </button>
                                             </form>
+                                            @endauth
+
+                                            @guest
+                                            <form action="{{ route('guest.user-login') }}" method="GET">
+                                                @csrf
+                                                <button type="submit" href="#" class="btn  btn-primary ml-2"><i class="fas fa-shopping-cart"></i>
+                                                    Add to cart </button>
+                                            </form>
+                                            @endguest
                                         </div>
                                     </div>
 
@@ -132,6 +142,7 @@
                             <figcaption class="info-wrap">
                                 <a href="#" class="title">@{{ similar.product_name }}</a>
                                 <div class="action-wrap">
+                                @auth
                                 <form action="{{route('auth.details')}}" method="GET">
                                     <input type="hidden" name="product_id" :value="similar.id">
                                     <button type="submit" class="btn btn-primary btn-sm float-right">
@@ -140,6 +151,18 @@
 
                                     </button>
                                 </form>
+                                @endauth
+
+                                @guest
+                                <form action="{{route('guest.details')}}" method="GET">
+                                    <input type="hidden" name="product_id" :value="similar.id">
+                                    <button type="submit" class="btn btn-primary btn-sm float-right">
+                                        <i class="fa fa-search-plus"></i>
+                                        Quick view
+
+                                    </button>
+                                </form>
+                                @endguest
                                    
                                     <div class="price-wrap h5">
                                         <span class="price-new">Php.@{{ similar.product_original_price }}</span>
