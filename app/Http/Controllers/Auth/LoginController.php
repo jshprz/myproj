@@ -47,7 +47,7 @@ class LoginController extends Controller
 
     public function dummy()
     {
-        return view("welcome",compact('storeName'));
+        return view("welcome");
     }
 
     public function index($storeName)
