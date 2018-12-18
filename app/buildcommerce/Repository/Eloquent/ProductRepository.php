@@ -33,7 +33,7 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
         return $this->model->where('store_id',$store_id)->where('product_category_id',$request->product_category_id)->whereNotIn('id',[$request->product_id])->get();
     }
     
-    public function getProductById($id)
+    public function getProductById($id,$request)
     {
         $private_ip = $request->server('SERVER_ADDR');
         $store_id = $this->store->getStoreByPrivateIp($private_ip)->id;

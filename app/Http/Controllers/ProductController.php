@@ -22,8 +22,8 @@ class ProductController extends Controller
         
         if($data)
         {
-            $products = $this->product->getProductById($request->product_id,$storeName);
-            $product_feedback = $this->product->getProductFeedback($request->product_id,$storeName);
+            $products = $this->product->getProductById($request->product_id,$request);
+            $product_feedback = $this->product->getProductFeedback($request->product_id);
            if($products)
            {
                 $product_category = $this->product->getProductCategoryById($products->product_category_id);
