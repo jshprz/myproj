@@ -24,7 +24,11 @@ Route::group(['middleware' => 'guest', 'as' => 'guest.'], function(){
 });
 
 Route::group(['middleware' => 'auth','as' => 'auth.'], function(){
-    Route::get('/buyer-logout','Auth\LoginController@Logout')->name('buyerLogout');
+    Route::get('/buyer-logout',function({
+        Auth::logout();
+        Session::flush();
+        return redirect()->route('guest.loginlogin');
+    }))->name('buyerLogout');
     Route::get('/','ShopController@index')->name('shops');
     Route::get('/cart','ShopController@viewCart')->name('viewcart');
     Route::post('/checkout','PaymentController@index')->name('checkout');
