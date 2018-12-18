@@ -45,7 +45,7 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function index()
+    public function index(Request $request)
     {
 
         $private_ip = $request->server('SERVER_ADDR');
