@@ -7,11 +7,11 @@ interface ProductRepositoryInterface
 
     public function getSimilarProduct($request);
 
-    public function getProductById($id,$storeName);
+    public function getProductById($id);
 
     public function searchByPriceRange($request);
 
-    public function getProductFeedback($product_id,$storeName);
+    public function getProductFeedback($product_id);
 
     public function searchBySlider($request);
 
