@@ -132,7 +132,7 @@
                             <figcaption class="info-wrap">
                                 <a href="#" class="title">@{{ similar.product_name }}</a>
                                 <div class="action-wrap">
-                                <form action="{{route('guest.details')}}" method="GET">
+                                <form action="{{route('auth.details')}}" method="GET">
                                     <input type="hidden" name="product_id" :value="similar.id">
                                     <button type="submit" class="btn btn-primary btn-sm float-right">
                                         <i class="fa fa-search-plus"></i>
