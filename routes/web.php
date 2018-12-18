@@ -17,7 +17,7 @@ Route::group(['middleware' => 'guest', 'as' => 'guest.'], function(){
     
     Route::post('/register-buyer','Auth\RegistrationController@registerBuyer')->name('postBuyerRegister');
     Route::post('/login-buyer','Auth\LoginController@Login')->name('loginBuyer');
-    
+    Route::get('/guest/product-details','ProductController@details')->name('details');
     Route::get('/user-login','Auth\LoginController@index')->name('user-login');
     Route::get('/user-registration','Auth\RegisterController@index')->name('user-register');
 });

@@ -9,7 +9,7 @@
                          <img :src="'https://res.cloudinary.com/hrwjn43y4/image/upload/'+datas.product_image.split(',')[0]" width="250">
                         <div class="title">@{{ datas.product_name }} <span class="icon-basket float-right"></span></div>
                         <span class="price-new">@{{ numeral(datas.product_original_price).format('0.0') }}</span>
-                        <form action="{{route('guest.details')}}" method="GET">
+                        <form action="{{route('auth.details')}}" method="GET">
 
                             <input type="hidden" name="product_id" :value="datas.id">
                             <button type="submit" class="btn btn-primary">
