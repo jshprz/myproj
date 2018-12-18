@@ -151,7 +151,7 @@
         });
       },
       searchByPriceRange() {
-        axios.post('/api/search-by-price-range', minimum: this.minimum, maximum: this.maximum }).then(response => {
+        axios.post('/api/search-by-price-range',{ minimum: this.minimum, maximum: this.maximum }).then(response => {
           this.data = response.data;
         }).catch(error => {
           console.log(error);
