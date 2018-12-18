@@ -15,7 +15,7 @@
 Route::get('/loginss','Auth\LoginController@dummy')->name('login');  
 Route::get('/activate/{storeName}/{token}','Auth\RegistrationController@activate')->name('registerBuyerActivate');
 Route::group(['middleware' => 'guest', 'as' => 'guest.'], function(){
-    Route::get('/','Auth\LoginController@dummy');
+    Route::get('/','Auth\LoginController@index');
     Route::post('/register-buyer','Auth\RegistrationController@registerBuyer')->name('postBuyerRegister');
     Route::post('/login-buyer','Auth\LoginController@Login')->name('loginBuyer');
     Route::get('/{storeName}/product-details','ProductController@details')->name('details');
