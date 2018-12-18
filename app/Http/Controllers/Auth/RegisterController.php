@@ -45,12 +45,14 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function index($storeName)
+    public function index()
     {
-        $data = $this->store->getStoreByName($storeName);
+
+        $private_ip = $request->server('SERVER_ADDR');
+        $data = $this->store->getStoreByPrivateIp($private_ip);
         if($data)
         {
-            return view('auth.registration',compact('storeName'));
+            return view('auth.registration',compact('data'));
         }
         else
         {
@@ -103,16 +105,16 @@ class RegisterController extends Controller
 
     }
 
-    protected function activate($storeName,$token)
+    protected function activate($token)
     {
         $user = $this->user->activate($token);
         if(!$user)
         {
-            return redirect()->route('guest.user-login',['storeName' => $storeName])->with('flashError', t('You are not registered with us'));
+            return redirect()->route('guest.user-login')->with('flashError', t('You are not registered with us'));
         }
         else
         {
-            return redirect()->route('guest.user-login',['storeName' => $storeName])->with('flashSuccess', t('Congratulations your account is created and activated'));
+            return redirect()->route('guest.user-login')->with('flashSuccess', t('Congratulations your account is created and activated'));
         }
     }
 }

@@ -62,7 +62,8 @@ class StoreRepository extends AbstractRepository implements StoreRepositoryInter
             $payment_array[] = '';
         }
         $imploded_payment = implode(',', $payment_array);
-        $store_data = $this->getStoreByName($request->storeName);
+        $private_ip = $request->server('SERVER_ADDR');
+        $store_data = $this->getStoreByPrivateIp($private_ip);
         $query = $this->model->where('id',$store_data->id)->update(['payment' => $imploded_payment]);
         if($query)
         {
@@ -76,7 +77,9 @@ class StoreRepository extends AbstractRepository implements StoreRepositoryInter
     
     public function getPayment($request)
     {
-        $store_data = $this->getStoreByName($request->storeName);
+        
+        $private_ip = $request->server('SERVER_ADDR');
+        $store_data = $this->getStoreByPrivateIp($private_ip);
         $query = $this->model->select('payment')->where('id',$store_data->id)->first();
         return response()->json($query);
     }

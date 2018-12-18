@@ -298,7 +298,7 @@
                     </div>
 
                     <!-- box.// -->
-                    <form action="{{ route('auth.paywithpaypal',['storeName' => $storeName]) }}" method="POST" v-show="paymentService == 'stripe'">
+                    <form action="{{ route('auth.paywithpaypal') }}" method="POST" v-show="paymentService == 'stripe'">
                       @csrf
                       
                       <input type="hidden" name="total_checkout" value="{{$total_checkout}}">
@@ -308,7 +308,7 @@
 
                     </form>
 
-                    <form action="{{ route('auth.paywithpaypal',['storeName' => $storeName]) }}" method="POST" v-show="paymentService == 'paypal'">
+                    <form action="{{ route('auth.paywithpaypal') }}" method="POST" v-show="paymentService == 'paypal'">
                       @csrf
                       
                       <input type="hidden" name="total_checkout" value="{{$total_checkout}}">
@@ -318,7 +318,7 @@
 
                     </form>
 
-                    <form action="{{ route('auth.selectCourier',['storeName' => $storeName]) }}" method="GET" v-show="paymentService == 'cod'">
+                    <form action="{{ route('auth.selectCourier') }}" method="GET" v-show="paymentService == 'cod'">
                       <input type="hidden" name="fullname" :value="invoice.fullname">
                       <input type="hidden" name="email" :value="invoice.email_address">
                       <input type="hidden" name="house_detail" :value="invoice.house_detail">
@@ -334,11 +334,11 @@
 
                     </form>
                     <br>
-                    <form action="{{ route('auth.viewcart',['storeName' => $storeName]) }}" method="GET">
+                    <form action="{{ route('auth.viewcart') }}" method="GET">
                     <button type="submit" class="btn btn-danger btn-block">Cancel
                                 </button>
                     </form>
-                    <!-- <form action="{{ route('auth.paywithstripe',['storeName' => $storeName]) }}" method="POST">
+                    <!-- <form action="{{ route('auth.paywithstripe') }}" method="POST">
                       @csrf
             <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"

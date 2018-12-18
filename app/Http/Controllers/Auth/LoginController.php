@@ -77,13 +77,15 @@ class LoginController extends Controller
             $input = $request->all();
             $validator = $this->validator($input);
             $validator->validate();
-            $store_data = $this->store->getStoreByName($request->storeName);
+
+            $private_ip = $request->server('SERVER_ADDR');
+            $store_data = $this->store->getStoreByPrivateIp($private_ip);
             if($validator->passes())
             {
                 if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'confirmed' => 1, 'store_id' => $store_data->id]))
                 {
             
-                    return redirect()->route('auth.shops',['storeName' => $request->storeName]);                   
+                    return redirect()->route('auth.shops');                   
                 }
                 else
                 {
@@ -102,10 +104,10 @@ class LoginController extends Controller
         }
     }
 
-    protected function Logout($storeName)
+    protected function Logout()
     {
         Auth::logout();
         Session::flush();
-        return redirect()->route('guest.user-login',['storeName' => $storeName]);
+        return redirect()->route('guest.user-login');
     }
 }

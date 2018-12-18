@@ -15,9 +15,10 @@ class ProductController extends Controller
         $this->product = $product;
     }
 
-    public function details(Request $request,$storeName)
+    public function details(Request $request)
     {
-        $data = $this->store->getStoreByName($storeName);
+        $private_ip = $request->server('SERVER_ADDR');
+        $data = $this->store->getStoreByPrivateIp($private_ip);
         
         if($data)
         {
@@ -28,7 +29,7 @@ class ProductController extends Controller
                 $product_category = $this->product->getProductCategoryById($products->product_category_id);
                 $exploded_images = explode(',',$products->product_image);
 
-                return view('product-detail.details',compact('storeName','products','product_feedback','product_category','exploded_images','data'));
+                return view('product-detail.details',compact('products','product_feedback','product_category','exploded_images','data'));
            }
            else
            {

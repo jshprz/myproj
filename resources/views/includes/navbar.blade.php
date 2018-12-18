@@ -13,7 +13,7 @@
             </div>
       </li>
       <li>
-           <a href="{{ route('auth.viewcart',['storeName' => $storeName]) }}">
+           <a href="{{ route('auth.viewcart') }}">
                     <span>
                         <i class="fas fa-shopping-cart"></i>
                         <span class="badge badge-info">
@@ -32,7 +32,7 @@
             </a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-sm btn-outline-secondary" href="{{ route('auth.buyerLogout',['storeName' => $storeName]) }}">Logout</a>
+        <a class="btn btn-sm btn-outline-secondary" href="{{ route('auth.buyerLogout') }}">Logout</a>
       </li>
     </ul>
     

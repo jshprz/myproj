@@ -22,8 +22,8 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
     public function registerBuyerAccount($request)
     {
-        
-        $store_id = $this->store->getStoreByName($request->store_name)->id;
+        $private_ip = $request->server('SERVER_ADDR');
+        $store_id = $this->store->getStoreByPrivateIp($private_ip)->id;
         $token = sha1(str_random(11) . (time() * rand(2, 2000)));
         $this->model->store_id = $store_id;
         $this->model->firstname = $request->firstname;
@@ -35,6 +35,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         $this->model->save();
         $view = 'mail.confirmation';
 
+        
         $this->mailer->activation($view,$this->model,$token,$request->store_name);
         return true;
     }
@@ -59,9 +60,10 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         }
     }
 
-    public function verifyIfAuthenticated($storeName)
+    public function verifyIfAuthenticated()
     {
-        $check_buyer = $this->store->getStoreByName($storeName);
+        $private_ip = $request->server('SERVER_ADDR');
+        $check_buyer = $this->store->getStoreByPrivateIp($private_ip);
         if($check_buyer->id == Auth::user()->store_id)
         {
             return true;

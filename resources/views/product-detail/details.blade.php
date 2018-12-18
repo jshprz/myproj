@@ -132,7 +132,7 @@
                             <figcaption class="info-wrap">
                                 <a href="#" class="title">@{{ similar.product_name }}</a>
                                 <div class="action-wrap">
-                                <form action="{{route('auth.details',['storeName' => $storeName])}}" method="GET">
+                                <form action="{{route('auth.details')}}" method="GET">
                                     <input type="hidden" name="product_id" :value="similar.id">
                                     <button type="submit" class="btn btn-primary btn-sm float-right">
                                         <i class="fa fa-search-plus"></i>
@@ -173,7 +173,7 @@
         },
         methods: {
             getSimilarProductData() {
-                axios.post('/api/get-similar-product', { storeName: '{{ $storeName }}', product_id: '{{ $products->id }}', product_category_id: '{{ $product_category->id }}' }).then(response => {
+                axios.post('/api/get-similar-product', { product_id: '{{ $products->id }}', product_category_id: '{{ $product_category->id }}' }).then(response => {
                     this.similarProductData = response.data;
                 }).catch(error => {
                     console.log(error.response);

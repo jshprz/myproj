@@ -12,12 +12,13 @@ class CheckoutController extends Controller
     {
         $this->store = $store; 
     }
-    public function index($storeName)
+    public function index()
     {
-        $data = $this->store->getStoreByName($storeName);
+        $private_ip = $request->server('SERVER_ADDR');
+        $data = $this->store->getStoreByPrivateIp($private_ip);
         if($data)
         {
-            return view('checkout.checkout',compact('storeName', 'data'));
+            return view('checkout.checkout',compact('data'));
         }
         else
         {

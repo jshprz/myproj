@@ -15,9 +15,10 @@ class PaymentController extends Controller
         $this->store = $store; 
         $this->payment = $payment;
     }
-    public function index(Request $request,$storeName)
+    public function index(Request $request)
     {
-        $data = $this->store->getStoreByName($storeName);
+        $private_ip = $request->server('SERVER_ADDR');
+        $data = $this->store->getStoreByPrivateIp($private_ip);
         $total_checkout = $request->total_checkout;
         $ship_fee = $request->ship_fee;
         $tax = $request->tax;
@@ -27,7 +28,7 @@ class PaymentController extends Controller
 
         if($data)
         {
-            return view('payment.payment',compact('storeName','total_checkout','ship_fee','tax','subtotal','data'));
+            return view('payment.payment',compact('total_checkout','ship_fee','tax','subtotal','data'));
         }
         else
         {
@@ -35,32 +36,32 @@ class PaymentController extends Controller
         }
     }
 
-    public function payWithPaypal(Request $request,$storeName)
+    public function payWithPaypal(Request $request)
     {
-        return $this->payment->payWithPaypal($request,$storeName);
+        return $this->payment->payWithPaypal($request);
     }
-    public function getPaypalPaymentStatus($storeName)
+    public function getPaypalPaymentStatus()
     {
-        return $this->payment->getPaypalPaymentStatus($storeName);
-    }
-
-    public function payWithStripe(Request $request,$storeName)
-    {
-        return $this->payment->payWithStripe($request, $storeName);
+        return $this->payment->getPaypalPaymentStatus();
     }
 
-    public function createDelivery(Request $request,$storeName)
+    public function payWithStripe(Request $request)
+    {
+        return $this->payment->payWithStripe($request);
+    }
+
+    public function createDelivery(Request $request)
     {
         
-        return $this->payment->createDelivery($request,$storeName);
+        return $this->payment->createDelivery($request);
     }
 
-    public function trackDelivery($storeName)
+    public function trackDelivery()
     {
-        return $this->payment->trackDelivery($storeName);
+        return $this->payment->trackDelivery();
     }
 
-    public function selectCourier(Request $request, $storeName)
+    public function selectCourier(Request $request)
     {
         Session::put('fullname',$request->fullname);
         Session::put('email',$request->email);
@@ -74,6 +75,6 @@ class PaymentController extends Controller
         
         Session::put('order_id',$request->order_id);
         
-        return view('select-courier.index',compact('storeName'));
+        return view('select-courier.index');
     }
 }

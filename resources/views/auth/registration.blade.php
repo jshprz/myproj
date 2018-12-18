@@ -12,7 +12,7 @@
                         <div class="card-body">
                             <form action="{{ route('guest.postBuyerRegister') }}" method="POST">
                             @csrf
-                                <input type="hidden" name="store_name" value="{{ $storeName }}">
+                                <input type="hidden" name="store_name" value="{{ $data->store_name }}">
                                 <div class="form-group">
                                 <label for="exampleInputEmail1">Firstname</label>
                                 <input type="text" name="firstname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

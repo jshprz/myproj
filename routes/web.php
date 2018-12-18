@@ -13,21 +13,21 @@
 
 
 Route::get('/loginss','Auth\LoginController@dummy')->name('login');  
-Route::get('/activate/{storeName}/{token}','Auth\RegistrationController@activate')->name('registerBuyerActivate');
+Route::get('/activate/{token}','Auth\RegistrationController@activate')->name('registerBuyerActivate');
 Route::group(['middleware' => 'guest', 'as' => 'guest.'], function(){
     Route::get('/','Auth\LoginController@index');
     Route::post('/register-buyer','Auth\RegistrationController@registerBuyer')->name('postBuyerRegister');
     Route::post('/login-buyer','Auth\LoginController@Login')->name('loginBuyer');
-    Route::get('/{storeName}/product-details','ProductController@details')->name('details');
-    // Route::get('/{storeName}/user-login','Auth\LoginController@index')->name('user-login');
-    Route::get('/{storeName}/user-registration','Auth\RegistrationController@index')->name('user-register');
+    Route::get('/product-details','ProductController@details')->name('details');
+    // Route::get('/user-login','Auth\LoginController@index')->name('user-login');
+    Route::get('/user-registration','Auth\RegistrationController@index')->name('user-register');
 });
 
 Route::group(['middleware' => 'auth','as' => 'auth.'], function(){
-    Route::get('/{storeName}/buyer-logout','Auth\LoginController@Logout')->name('buyerLogout');
-    Route::get('/{storeName}','ShopController@index')->name('shops');
-    Route::get('/{storeName}/cart','ShopController@viewCart')->name('viewcart');
-    Route::post('/{storeName}/checkout','PaymentController@index')->name('checkout');
+    Route::get('/buyer-logout','Auth\LoginController@Logout')->name('buyerLogout');
+    Route::get('/','ShopController@index')->name('shops');
+    Route::get('/cart','ShopController@viewCart')->name('viewcart');
+    Route::post('/checkout','PaymentController@index')->name('checkout');
 
 
     Route::post('/api/view-cart','ShopController@cartDataPost');
@@ -35,13 +35,13 @@ Route::group(['middleware' => 'auth','as' => 'auth.'], function(){
     Route::post('add-to-cart','ShopController@addToCart')->name('addcart');
     Route::post('/api/remove-item-cart','ShopController@removeItemFromCart');
     Route::get('/api/get-authenticated-store','ShopController@getAuthenticatedStore');
-    Route::get('/{storeName}/statuswithpaypal','PaymentController@getPaypalPaymentStatus')->name('paywithpaypalstatus');
-    Route::post('/{storeName}/paywithpaypal','PaymentController@payWithPaypal')->name('paywithpaypal');
-    Route::post('/{storeName}/paywithstripe','PaymentController@paywithstripe')->name('paywithstripe');
-    Route::get('/{storeName}/track-delivery','PaymentController@trackDelivery')->name('trackDelivery');
-    Route::get('/{storeName}/select-courier-service','PaymentController@selectCourier')->name('selectCourier');
-    Route::get('/{storeName}/create-delivery','PaymentController@createDelivery')->name('createDelivery');
-    Route::get('/{storeName}/my-transactions','TransactionController@index')->name('mytransaction');
+    Route::get('/statuswithpaypal','PaymentController@getPaypalPaymentStatus')->name('paywithpaypalstatus');
+    Route::post('/paywithpaypal','PaymentController@payWithPaypal')->name('paywithpaypal');
+    Route::post('/paywithstripe','PaymentController@paywithstripe')->name('paywithstripe');
+    Route::get('/track-delivery','PaymentController@trackDelivery')->name('trackDelivery');
+    Route::get('/select-courier-service','PaymentController@selectCourier')->name('selectCourier');
+    Route::get('/create-delivery','PaymentController@createDelivery')->name('createDelivery');
+    Route::get('/my-transactions','TransactionController@index')->name('mytransaction');
     Route::get('/api/get-transactions','TransactionController@getTransactions')->name('getTransactions');
     Route::post('/api/post-transactions','TransactionController@getTransactionsById')->name('getTransactionsById');
     Route::post('/api/create-feedback','ShopController@createFeedback')->name('createFeedback');

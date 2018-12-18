@@ -70,17 +70,17 @@
 
                 <div class="row mt-4">
                   <div class="col-sm-6">
-                    <a href="{{ route('auth.shops',['storeName' => $storeName]) }}" class="btn text-muted d-none d-sm-inline-block btn-link font-weight-semibold">
+                    <a href="{{ route('auth.shops') }}" class="btn text-muted d-none d-sm-inline-block btn-link font-weight-semibold">
                       <i class="mdi mdi-arrow-left"></i> Continue Shopping </a>
                   </div> <!-- end col -->
                   <div class="col-sm-6">
                     <div class="text-sm-right">
-                      <form action="{{route('auth.checkout',['storeName' => $storeName])}}" method="POST">
+                      <form action="{{route('auth.checkout')}}" method="POST">
                         @csrf
                         <input type="hidden" name="total_checkout" :value="total">
                         <input type="hidden" name="cart[]" v-for="ct in cart" :value="ct.id+'-'+ct.qty+'-'+ct.price">
                         <input type="hidden" name="cart_length" :value="cartLength">
-                        <button type="submit" class="btn btn-primary" href="{{route('auth.checkout',['storeName' => $storeName])}}"
+                        <button type="submit" class="btn btn-primary" href="{{route('auth.checkout')}}"
                           v-show="cartLength > 0">Proceed to checkout</button>
 
                       </form>

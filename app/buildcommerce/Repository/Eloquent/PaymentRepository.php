@@ -45,7 +45,7 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
         $this->_api_context->setConfig($paypal_conf['settings']);
     }
 
-    public function payWithPaypal($request,$storeName)
+    public function payWithPaypal($request)
     {
         Session::put('order_id',$request->order_id);
         $payer = new Payer();
@@ -71,8 +71,8 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
             ->setDescription('Your transaction description');
  
         $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::route('paywithpaypalstatus',['storeName' => $storeName])) /** Specify return URL **/
-            ->setCancelUrl(URL::route('paywithpaypalstatus',['storeName' => $storeName]));
+        $redirect_urls->setReturnUrl(URL::route('paywithpaypalstatus')) /** Specify return URL **/
+            ->setCancelUrl(URL::route('paywithpaypalstatus'));
  
         $payment = new Payment();
         $payment->setIntent('Sale')
@@ -121,7 +121,7 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
  
     }
 
-    public function getPaypalPaymentStatus($storeName)
+    public function getPaypalPaymentStatus()
     {
         $payment_id = Session::get('paypal_payment_id');
  
@@ -171,19 +171,19 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
         		
         		Session::forget('order_id');
         		Cart::destroy();
-            return redirect()->route('auth.shops',['storeName' => $storeName])->with('flashSuccess', 'Payment success');
+            return redirect()->route('auth.shops')->with('flashSuccess', 'Payment success');
  
         }
-        return redirect()->route('auth.viewcart',['storeName' => $storeName])->with('flashError', 'Payment failed');
+        return redirect()->route('auth.viewcart')->with('flashError', 'Payment failed');
  
     }
 
-    public function payWithStripe($request, $storeName)
+    public function payWithStripe($request)
     {
     	dd($request->all());
     }
 
-    public function createDelivery($request,$storeName)
+    public function createDelivery($request)
     {
         
       $tracking_info = [
@@ -195,11 +195,11 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
             
         ];
         Trackings::create(sha1(str_random(11) . (time() * rand(2, 2000))),$tracking_info);
-      return redirect()->route('trackDelivery',['storeName' => $storeName])->with('flashSuccess','Your delivery is pending');
+      return redirect()->route('trackDelivery')->with('flashSuccess','Your delivery is pending');
 
     }   
 
-    public function trackDelivery($storeName)
+    public function trackDelivery()
     {
         foreach (Session::get('cart_id') as $key => $value) 
         		{
@@ -222,6 +222,6 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
         		Session::forget('order_id');
         		Cart::destroy();
 
-       return  view('track.index',compact('storeName'));
+       return  view('track.index');
     }
 }

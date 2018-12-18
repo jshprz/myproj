@@ -35,7 +35,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-4 mb-5 mb-lg-0">
-          <a class="blog-header-logo text-dark" href="{{ route('auth.mytransaction',['storeName' => $storeName]) }}">My transactions</a>
+          <a class="blog-header-logo text-dark" href="{{ route('auth.mytransaction') }}">My transactions</a>
             <!-- <div class="font-weight-bold text-uppercase text-lg text-dark mb-3">Sell<span class="text-primary">.</span></div>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p> -->
             <ul class="list-inline">
@@ -117,7 +117,6 @@
 
         url = url || '/api/products-tobe-displayed';
         axios.post(url, {
-          storeName: '{{ $storeName }}',
           productCategory: productCategory,
           searchProduct: this.searchInput
         }).then(response => {
@@ -143,7 +142,6 @@
       },
       getProductCategory() {
         axios.post('/api/product-category-tobe-displayed', {
-          storeName: '{{ $storeName }}'
         }).then(response => {
           this.category = response.data;
           this.getProducts(this.category[0].category_name);
@@ -153,7 +151,7 @@
         });
       },
       searchByPriceRange() {
-        axios.post('/api/search-by-price-range', {storeName:'{{ $storeName }}', minimum: this.minimum, maximum: this.maximum }).then(response => {
+        axios.post('/api/search-by-price-range', minimum: this.minimum, maximum: this.maximum }).then(response => {
           this.data = response.data;
         }).catch(error => {
           console.log(error);
@@ -168,7 +166,6 @@
       },
       searchBySlider() {
         axios.post('/api/search-by-slider',{
-          storeName:'{{ $storeName }}',
           price:this.priceRange
         }).then(response => {
           this.data = response.data;

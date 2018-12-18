@@ -28,13 +28,15 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
 
     public function getSimilarProduct($request)
     {
-        $store_id = $this->store->getStoreByName($request->storeName)->id;
+        $private_ip = $request->server('SERVER_ADDR');
+        $store_id = $this->store->getStoreByPrivateIp($private_ip)->id;
         return $this->model->where('store_id',$store_id)->where('product_category_id',$request->product_category_id)->whereNotIn('id',[$request->product_id])->get();
     }
     
-    public function getProductById($id,$storeName)
+    public function getProductById($id)
     {
-        $store_id = $this->store->getStoreByName($storeName)->id;
+        $private_ip = $request->server('SERVER_ADDR');
+        $store_id = $this->store->getStoreByPrivateIp($private_ip)->id;
         $query = $this->model->where('store_id', $store_id)->where('id',$id)->first();
         if($query)
         {
@@ -48,19 +50,21 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
 
      public function searchByPriceRange($request)
      {
-         $store_id = $this->store->getStoreByName($request->storeName)->id;
+         $private_ip = $request->server('SERVER_ADDR');
+         $store_id = $this->store->getStoreByPrivateIp($private_ip)->id;
          $data = $this->model->whereBetween('product_original_price',[$request->minimum,$request->maximum])->where('store_id',$store_id)->get();
          return response()->json($data);  
      }
 
-     public function getProductFeedback($product_id,$storeName)
+     public function getProductFeedback($product_id)
      {
          return $this->feedback->join('store_users','feedback.buyer_id','=','store_users.id')->select('feedback.*','store_users.firstname','store_users.lastname')->where('feedback.product_id',$product_id)->get();
      }
 
      public function searchBySlider($request)
      {
-         $store_id = $this->store->getStoreByName($request->storeName)->id;
+         $private_ip = $request->server('SERVER_ADDR');
+         $store_id = $this->store->getStoreByPrivateIp($private_ip)->id;
          $data = $this->model->whereBetween('product_original_price',[0,$request->price])->where('store_id',$store_id)->get();
          return response()->json($data);
      }
@@ -69,14 +73,16 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
      {
         if(empty($request->searchProduct))
         {
-            $store_id = $this->store->getStoreByName($request->storeName)->id;
+            $private_ip = $request->server('SERVER_ADDR');
+            $store_id = $this->store->getStoreByPrivateIp($private_ip)->id;
         $product_category_id = $this->product_category->getProductCategoryByName($request->productCategory)->id;
         $data =  $this->model->where('product_category_id',$product_category_id)->with('productCategory')->with('store')->where('store_id',$store_id)->paginate(9);
         return response()->json($data);
         }
         else
         {
-            $store_id = $this->store->getStoreByName($request->storeName)->id;
+            $private_ip = $request->server('SERVER_ADDR');
+            $store_id = $this->store->getStoreByPrivateIp($private_ip)->id;
         $product_category_id = $this->product_category->getProductCategoryByName($request->productCategory)->id;
         $data =  $this->model->where('product_category_id',$product_category_id)->where('product_name','like',$request->searchProduct.'%')->with('productCategory')->with('store')->where('store_id',$store_id)->paginate(9);
         return response()->json($data);
@@ -85,7 +91,8 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
 
     public function getProductCategoryTobeDisplayed($request)
     {
-        $store_id = $this->store->getStoreByName($request->storeName)->id;
+        $private_ip = $request->server('SERVER_ADDR');
+        $store_id = $this->store->getStoreByPrivateIp($private_ip)->id;
         $data = $this->product_category->with('store')->where('store_id',$store_id)->with('product')->get();
         return response()->json($data);
     }

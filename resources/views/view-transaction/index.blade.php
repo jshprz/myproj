@@ -16,7 +16,7 @@
             
             </div>
           </div>
-          <a class="btn btn-primary" href="{{ route('auth.shops',['storeName' => $storeName]) }}">Back</a>
+          <a class="btn btn-primary" href="{{ route('auth.shops') }}">Back</a>
         </div>
       </div>
     </section>

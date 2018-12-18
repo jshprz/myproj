@@ -13,9 +13,9 @@ class TransactionController extends Controller
         $this->transaction = $transaction;
     }
 
-    public function index($storeName)
+    public function index()
     {
-        return view('view-transaction.index',compact('storeName'));
+        return view('view-transaction.index');
     }
     
     public function lastTransaction()

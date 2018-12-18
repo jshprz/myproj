@@ -20,15 +20,16 @@ class ShopController extends Controller
         $this->user = $user;
         
     }
-    public function index($storeName)
+    public function index()
     {
-        $data = $this->store->getStoreByName($storeName);
+        $private_ip = $request->server('SERVER_ADDR');
+        $data = $this->store->getStoreByPrivateIp($private_ip);
         if($data)
         {
             $buyer_auth_verify = $this->user->verifyIfAuthenticated($storeName);
             if($buyer_auth_verify)
             {
-                return view('shop.index',compact('data','storeName'));
+                return view('shop.index',compact('data'));
             }
             else
             {
@@ -53,12 +54,13 @@ class ShopController extends Controller
         return $this->product->addToCart($request);
     }
 
-    public function viewCart($storeName)
+    public function viewCart()
     {
-        $data = $this->store->getStoreByName($storeName);
+        $private_ip = $request->server('SERVER_ADDR');
+        $data = $this->store->getStoreByPrivateIp($private_ip);
         if($data)
         {
-            return view('checkout.checkout',compact('storeName'));
+            return view('checkout.checkout');
         }
         else
         {
