@@ -108,6 +108,6 @@ class LoginController extends Controller
     {
         Auth::logout();
         Session::flush();
-        return redirect()->route('guest.user-login');
+        return redirect()->route('guest.loginlogin');
     }
 }
