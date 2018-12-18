@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    echo Request::server('SERVER_ADDR');
-});
+Route::get('/','Auth\LoginController@index');
 Route::get('/loginss','Auth\LoginController@dummy')->name('login');  
 Route::get('/activate/{storeName}/{token}','Auth\RegistrationController@activate')->name('registerBuyerActivate');
 Route::group(['middleware' => 'guest', 'as' => 'guest.'], function(){
