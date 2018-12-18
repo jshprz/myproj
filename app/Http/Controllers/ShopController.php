@@ -54,7 +54,7 @@ class ShopController extends Controller
         return $this->product->addToCart($request);
     }
 
-    public function viewCart()
+    public function viewCart(Request $request)
     {
         $private_ip = $request->server('SERVER_ADDR');
         $data = $this->store->getStoreByPrivateIp($private_ip);
