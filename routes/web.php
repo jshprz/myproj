@@ -20,7 +20,7 @@ Route::group(['middleware' => 'guest', 'as' => 'guest.'], function(){
     Route::post('/login-buyer','Auth\LoginController@Login')->name('loginBuyer');
     Route::get('/product-details','ProductController@details')->name('details');
     // Route::get('/user-login','Auth\LoginController@index')->name('user-login');
-    Route::get('/user-registration','Auth\RegistrationController@index')->name('user-register');
+    Route::get('/user-registration','Auth\RegisterController@index')->name('user-register');
 });
 
 Route::group(['middleware' => 'auth','as' => 'auth.'], function(){
