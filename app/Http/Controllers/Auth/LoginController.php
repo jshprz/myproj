@@ -10,6 +10,7 @@ use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use Route;
 
 class LoginController extends Controller
 {
@@ -108,6 +109,6 @@ class LoginController extends Controller
     {
         Auth::logout();
         Session::flush();
-        return redirect('/buyer-logout');
+        return Route::redirect('/buyer-logout');
     }
 }
