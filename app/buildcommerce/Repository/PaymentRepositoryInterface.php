@@ -3,13 +3,13 @@ namespace App\buildcommerce\Repository;
 
 interface PaymentRepositoryInterface
 {
-	public function payWithPaypal($request,$storeName);
+	public function payWithPaypal($request);
 
-	public function getPaypalPaymentStatus($storeName);
+	public function getPaypalPaymentStatus();
 
-	public function payWithStripe($request, $storeName);
+	public function payWithStripe($request);
 
-	public function createDelivery($request,$storeName);
+	public function createDelivery($request);
 
-	public function trackDelivery($storeName);
+	public function trackDelivery();
 }		
