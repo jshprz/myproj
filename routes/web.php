@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/','HomeController@index')->name('login');
+Route::get('/','HomeController@index');
+Route::get('/loginss','Auth\LoginController@dummy')->name('login');  
 Route::get('/activate/{token}','Auth\RegistrationController@activate')->name('registerBuyerActivate');
 Route::group(['middleware' => 'guest', 'as' => 'guest.'], function(){
     
