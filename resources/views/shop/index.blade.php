@@ -1,7 +1,7 @@
 @extends('master.index')
 
 @section('content')
-<meta name="csrf" value="{{ csrf_token() }">
+<meta name="csrf" value="{{ csrf_token() }}">
 <div id="app">
 
   <section class="section-content bg padding-y">
