@@ -20,7 +20,7 @@ class ShopController extends Controller
         $this->user = $user;
         
     }
-    public function index()
+    public function index(Request $request)
     {
         $private_ip = $request->server('SERVER_ADDR');
         $data = $this->store->getStoreByPrivateIp($private_ip);
