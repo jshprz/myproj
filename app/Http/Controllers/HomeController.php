@@ -7,8 +7,6 @@ use App\buildcommerce\Repository\StoreRepositoryInterface;
 
 class HomeController extends Controller
 {
-    protected $store;
-    
     public function __contruct(StoreRepositoryInterface $store)
     {
         $this->store = $store;

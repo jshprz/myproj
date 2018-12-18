@@ -41,6 +41,21 @@ class ShopController extends Controller
             return view('error-page.404');
         }
     }
+
+    public function landing(Request $request)
+    {
+        $private_ip = $request->server('SERVER_ADDR');
+        $data = $this->store->getStoreByPrivateIp($private_ip);
+        if($data)
+        {
+            return view('landing.index',compact('data'));
+        }
+        else
+        {
+            return view('error-page.404');
+        }    
+    }
+
     public function getProductsToBeDisplayed(Request $request)
     {
         return $this->product->getProductsToBeDisplayed($request);
