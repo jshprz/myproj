@@ -26,8 +26,8 @@
         </div>
       </section>
       <div class="row">
-        @include('shop.sidebar')
-        @include('shop.content')
+        @include('landing.sidebar')
+        @include('landing.content')
       </div>
     </div>
     <div class="py-6 bg-gray-300 text-muted mt-5">

@@ -9,7 +9,9 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
          <div style="padding-right: 20px;">
+                @auth
                 {{ auth()->user()->firstname }} {{ auth()->user()->lastname }}
+                @endauth
             </div>
       </li>
       <li>
@@ -32,7 +34,12 @@
             </a>
       </li>
       <li class="nav-item">
+      @auth
         <a class="btn btn-sm btn-outline-secondary" href="{{ route('auth.buyerLogout') }}">Logout</a>
+      @endauth
+      @guest
+        <a class="btn btn-sm btn-outline-secondary" href="{{ route('guest.user-login') }}">Login</a>
+      @endguest
       </li>
     </ul>
     
