@@ -26,7 +26,7 @@ class ShopController extends Controller
         $data = $this->store->getStoreByPrivateIp($private_ip);
         if($data)
         {
-            $buyer_auth_verify = $this->user->verifyIfAuthenticated();
+            $buyer_auth_verify = $this->user->verifyIfAuthenticated($request);
             if($buyer_auth_verify)
             {
                 return view('shop.index',compact('data'));

@@ -9,7 +9,7 @@ interface UserRepositoryInterface
 
     public function activate($token);
 
-    public function verifyIfAuthenticated();
+    public function verifyIfAuthenticated($request);
 
     public function createFeedback($request);
 

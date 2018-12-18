@@ -35,7 +35,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         $this->model->save();
         $view = 'mail.confirmation';
 
-        
+
         $this->mailer->activation($view,$this->model,$token,$request->store_name);
         return true;
     }
@@ -60,7 +60,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         }
     }
 
-    public function verifyIfAuthenticated(Request $request)
+    public function verifyIfAuthenticated($request)
     {
         $private_ip = $request->server('SERVER_ADDR');
         $check_buyer = $this->store->getStoreByPrivateIp($private_ip);
