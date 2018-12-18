@@ -109,6 +109,6 @@ class LoginController extends Controller
     {
         Auth::logout();
         Session::flush();
-        return Route::redirect('guest.loginlogin');
+        return view('auth.login');
     }
 }
