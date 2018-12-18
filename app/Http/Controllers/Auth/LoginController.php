@@ -56,7 +56,7 @@ class LoginController extends Controller
         $data = $this->store->getStoreByPrivateIp($private_ip);
         if($data)
         {
-        return view("auth.login",compact('storeName'));
+        return view("auth.login",compact('data'));
         }
         else
         {

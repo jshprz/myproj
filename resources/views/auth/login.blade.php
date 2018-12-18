@@ -14,7 +14,7 @@
                         <div class="card-body">
                             <form action="{{ route('guest.loginBuyer') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="storeName" value="{{ $storeName }}"/>
+                            <input type="hidden" name="storeName" value="{{ $data->store_name }}"/>
                                 <div class="form-group">
                                 <label for="exampleInputEmail1">EMAIL ADDRESS</label>
                                 <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -37,7 +37,7 @@
                             </form>
                             <div class="text-center" style="margin-top:1rem">
                                     <span>Don't have account yet?
-                                    <a href="{{route('guest.user-register',['storeName' => $storeName])}}" class="text-center">
+                                    <a href="{{route('guest.user-register',['storeName' => $data->store_name])}}" class="text-center">
                                          <b>Click here to sign up</b></span>
                                     </a>
                                 </div>
