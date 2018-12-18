@@ -15,6 +15,7 @@
             </div>
       </li>
       <li>
+           @auth
            <a href="{{ route('auth.viewcart') }}">
                     <span>
                         <i class="fas fa-shopping-cart"></i>
@@ -23,6 +24,18 @@
                         </span>
                     </span>
                 </a>
+           @endauth
+
+           @guest
+           <a href="{{ route('guest.user-login') }}">
+                    <span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge badge-info">
+                            @{{ cartCounts }}
+                        </span>
+                    </span>
+                </a>
+           @endguest
       </li>
       <li class="nav-item">
          <a class="text-muted" href="#">
