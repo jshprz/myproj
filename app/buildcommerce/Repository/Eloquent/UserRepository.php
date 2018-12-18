@@ -60,7 +60,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         }
     }
 
-    public function verifyIfAuthenticated()
+    public function verifyIfAuthenticated(Request $request)
     {
         $private_ip = $request->server('SERVER_ADDR');
         $check_buyer = $this->store->getStoreByPrivateIp($private_ip);
