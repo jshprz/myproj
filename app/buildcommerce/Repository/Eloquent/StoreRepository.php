@@ -92,4 +92,17 @@ class StoreRepository extends AbstractRepository implements StoreRepositoryInter
         $qr_generate = QrCode::generate($request->qrcode);
         return response()->json($qr_generate);
     }
+
+    public function getStoreByPrivateIp($private_ip)
+    {
+        $query = $this->model->where('instance_private_ip_address',$private_ip)->first();
+        if($query)
+        {
+            return $this->model->where('instance_private_ip_address',$private_ip)->first();
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

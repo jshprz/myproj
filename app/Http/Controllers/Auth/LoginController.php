@@ -50,9 +50,10 @@ class LoginController extends Controller
         return view("welcome");
     }
 
-    public function index($storeName)
+    public function index()
     {
-        $data = $this->store->getStoreByName($storeName);
+        $private_ip = Request::server('SERVER_ADDR');
+        $data = $this->store->getStoreByPrivateIp($private_ip);
         if($data)
         {
         return view("auth.login",compact('storeName'));

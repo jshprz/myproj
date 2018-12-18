@@ -15,4 +15,5 @@ interface StoreRepositoryInterface
 
     public function genQrCode($request);
 
+    public function getStoreByPrivateIp($private_ip);
 }
