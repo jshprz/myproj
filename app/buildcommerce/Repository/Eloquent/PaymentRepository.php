@@ -71,8 +71,8 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
             ->setDescription('Your transaction description');
  
         $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::route('paywithpaypalstatus')) /** Specify return URL **/
-            ->setCancelUrl(URL::route('paywithpaypalstatus'));
+        $redirect_urls->setReturnUrl(URL::route('auth.paywithpaypalstatus')) /** Specify return URL **/
+            ->setCancelUrl(URL::route('auth.paywithpaypalstatus'));
  
         $payment = new Payment();
         $payment->setIntent('Sale')
