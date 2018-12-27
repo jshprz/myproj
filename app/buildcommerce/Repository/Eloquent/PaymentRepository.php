@@ -195,7 +195,7 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
             
         ];
         Trackings::create(sha1(str_random(11) . (time() * rand(2, 2000))),$tracking_info);
-      return redirect()->route('trackDelivery')->with('flashSuccess','Your delivery is pending');
+      return redirect()->route('auth.trackDelivery')->with('flashSuccess','Your delivery is pending');
 
     }   
 
