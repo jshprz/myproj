@@ -48,6 +48,12 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
     public function payWithPaypal($request)
     {
         Session::put('order_id',$request->order_id);
+        Session::put('house_detail',$request->house_detail);
+        Session::put('street',$request->street);
+        Session::put('city',$request->city);
+        Session::put('zip',$request->zip);
+        Session::put('barangay',$request->barangay);
+
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
  
@@ -149,14 +155,18 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
         		{
         			
         			$exploded_cart = explode('-', $value);
-
+                    
         			$transaction_data[$key]['buyer_id'] = Auth::user()->id;
         			$transaction_data[$key]['total_paid'] = $json_transactions[0]->amount->total;
                     $transaction_data[$key]['product_id'] = $exploded_cart[0];
                     $transaction_data[$key]['order_id'] = Session::get('order_id');
-        			$transaction_data[$key]['payment_courier'] = 'paypal';
+                    $transaction_data[$key]['reference_number'] = mt_rand();
+                    $transaction_data[$key]['shipping_address'] = Session::get('house_detail').' '.Session::get('street').' St.'.' Barangay '.Session::get('barangay').', '.Session::get('city').' City'.', '.Session::get('zip');
+                    $transaction_data[$key]['payment_courier'] = 'paypal';
+        			$transaction_data[$key]['payment_type'] = 'cash in advance';
                     $transaction_data[$key]['quantity'] = $exploded_cart[1];
-                    $transaction_data[$key]['status'] = 'pending';
+                    $transaction_data[$key]['shipping_status'] = 'pending';
+                    $transaction_data[$key]['payment_status'] = 'paid';
 
                     if($this->product->where('id',$exploded_cart[0])->first()->product_quantity != 0)
                     {
@@ -204,14 +214,17 @@ class PaymentRepository extends AbstractRepository implements PaymentRepositoryI
         foreach (Session::get('cart_id') as $key => $value) 
         		{
         			$exploded_cart = explode('-', $value);
-
-        			$transaction_data[$key]['buyer_id'] = Auth::user()->id;
-        			$transaction_data[$key]['total_paid'] = Session::get('total_checkout');
+                    
+                    $transaction_data[$key]['buyer_id'] = Auth::user()->id;
+                    $transaction_data[$key]['total_paid'] = Session::get('total_checkout');
                     $transaction_data[$key]['product_id'] = $exploded_cart[0];
                     $transaction_data[$key]['order_id'] = Session::get('order_id');
-                    $transaction_data[$key]['payment_courier'] = 'paypal';
+                    $transaction_data[$key]['reference_number'] = mt_rand();
+                    $transaction_data[$key]['shipping_address'] = Session::get('house_detail').' '.Session::get('street').' St.'.' Barangay '.Session::get('barangay').', '.Session::get('city').' City'.', '.Session::get('zip');
+                    $transaction_data[$key]['payment_type'] = 'cash on delivery';
                     $transaction_data[$key]['quantity'] = $exploded_cart[1];
-                    $transaction_data[$key]['status'] = 'pending';
+                    $transaction_data[$key]['shipping_status'] = 'pending';
+                    $transaction_data[$key]['payment_status'] = 'not yet paid';
                 }
          
         		for($i = 0; $i < count($transaction_data); $i++)

@@ -59,12 +59,12 @@
                                         </div>
                                       </div>
 
-                                        {!! NoCaptcha::display() !!}
+                                        <!-- {!! NoCaptcha::display() !!}
                                 @if ($errors->has('g-recaptcha-response'))
                                     <span class="text-danger">
                                         <p>{{ $errors->first('g-recaptcha-response') }}</p>
                                     </span>
-                                @endif
+                                @endif -->
 
                                       <div class="text-center" style="margin-top:1rem">
                                     <button type="submit" class="btn btn-primary btn-block">Register</button>
